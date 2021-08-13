@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class PacotesImagens extends Model
 {
-    use HasFactory;
+    protected $table = 'infos';
+    protected $fillable = [ 'id', 'pacotes_id', 'imagens-id' ];    
 }

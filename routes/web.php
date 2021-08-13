@@ -37,6 +37,7 @@ Route::get('contate-nos', [HomeController::class, 'contateNos'])->name('home.con
 //minhas rotas protegidas
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     
+    Route::get('/', [HomeController::class, 'admin'])->name('admin.index');
     //grupo pacotes
     Route::group(['prefix' => 'pacotes'], function () {
         //rotas simples get e post

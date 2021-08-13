@@ -24,7 +24,7 @@ class PacotesController extends Controller
      */
     public function create()
     {
-        dd('aqui vou retornar a view admin.pacotes.create');
+        return view('admin.pacotes.criar');
     }
 
     /**
@@ -35,7 +35,7 @@ class PacotesController extends Controller
      */
     public function store(Request $request)
     {
-        dd('aqui vou retornar a view admin.pacotes.store');
+        dd($request->all());
     }
 
     /**

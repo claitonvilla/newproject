@@ -40,4 +40,9 @@ class HomeController extends Controller
     {
         dd('aqui vou retornar a view contatenos');
     }
+
+    public function admin()
+    {
+        return view('admin.index');
+    }
 }

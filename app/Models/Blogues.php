@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Blogues extends Model
 {
-    use HasFactory;
+    protected $table = 'blogues';
+    protected $fillable = [ 'id', 'nome', 'autor', 'views', 'conteudo' ];
+    protected $dates = ['created-at', 'updated-at'];
 }

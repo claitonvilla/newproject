@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Depoimentos extends Model
 {
-    use HasFactory;
+    protected $table = 'depoimentos';
+    protected $fillable = [ 'id', 'imagens_id', 'name', 'testemonial' ];
+    protected $dates = ['created-at', 'updated-at'];
 }

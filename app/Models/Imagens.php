@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Imagens extends Model
 {
-    use HasFactory;
+    protected $table = 'imagens';
+    protected $fillable = [ 'id', 'name', 'size', 'real-name', 'extension', 'mime' ];
+    protected $dates = ['created-at', 'updated-at'];
 }

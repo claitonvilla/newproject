@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Precos extends Model
 {
-    use HasFactory;
+    protected $table = 'precos';
+    protected $fillable = [ 'id', 'pacotes_id', 'from', 'to', 'price', ];
+    protected $dates = ['created-at', 'updated-at'];
 }

@@ -17,11 +17,8 @@ class CreateInfosTable extends Migration
             $table->increments('id');
             $table->integer('pacotes_id')->unsigned();
             $table->foreign('pacotes_id')->references('id')->on('pacotes')->onDelete('cascade')->onUpdate('cascade');
-            $table->text('Check-in');
-            $table->text('Check-out');
-            $table->text('Pets');
-            $table->text('Policies');
-            $table->text('Fees');
+            $table->string('nome');
+            $table->text('descricao');
             $table->timestamps();
         });
     }

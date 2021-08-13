@@ -18,7 +18,7 @@ class CreatePacotesTable extends Migration
             $table->string('nome');
             $table->text('chamada');
             $table->integer('noites');
-            $table->boolean('pass_area');
+            $table->boolean('pass_aerea');
             $table->text('endereço')->nullable();
             $table->text('descricao');
             $table->text('mapa')->nullable();
@@ -26,7 +26,7 @@ class CreatePacotesTable extends Migration
             $table->string('contato_tel')->nullable();
             $table->string('contato_cel')->nullable();
             $table->string('email');
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }
