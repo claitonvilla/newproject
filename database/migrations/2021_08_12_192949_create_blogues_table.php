@@ -14,7 +14,11 @@ class CreateBloguesTable extends Migration
     public function up()
     {
         Schema::create('blogues', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('nome');
+            $table->string('autor');
+            $table->integer('views');
+            $table->text('conteudo');       
             $table->timestamps();
         });
     }

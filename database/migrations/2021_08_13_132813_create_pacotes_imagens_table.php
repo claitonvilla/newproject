@@ -14,8 +14,11 @@ class CreatePacotesImagensTable extends Migration
     public function up()
     {
         Schema::create('pacotes_imagens', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id');
+            $table->integer('pacotes_id')->unsigned();
+            $table->foreign('pacotes_id')->references('id')->on('pacotes')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('imagens_id')->unsigned();
+            $table->foreign('imagens_id')->references('id')->on('imagens')->onDelete('cascade')->onUpdate('cascade');            
         });
     }
 

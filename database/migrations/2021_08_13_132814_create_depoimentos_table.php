@@ -14,7 +14,11 @@ class CreateDepoimentosTable extends Migration
     public function up()
     {
         Schema::create('depoimentos', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->integer('imagens_id')->unsigned();
+            $table->foreign('imagens_id')->references('id')->on('imagens')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('name');
+            $table->text('testemonial');            
             $table->timestamps();
         });
     }

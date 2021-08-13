@@ -14,7 +14,12 @@ class CreatePrecosTable extends Migration
     public function up()
     {
         Schema::create('precos', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->integer('pacotes_id')->unsigned();
+            $table->foreign('pacotes_id')->references('id')->on('pacotes')->onDelete('cascade')->onUpdate('cascade');
+            $table->date('from');
+            $table->date('to');
+            $table->integer('price');
             $table->timestamps();
         });
     }

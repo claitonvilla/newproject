@@ -14,7 +14,12 @@ class CreateImagensTable extends Migration
     public function up()
     {
         Schema::create('imagens', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('name');
+            $table->integer('size');
+            $table->string('real-name');
+            $table->string('extension');
+            $table->string('mime');
             $table->timestamps();
         });
     }
