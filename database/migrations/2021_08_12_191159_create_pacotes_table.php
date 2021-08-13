@@ -14,7 +14,19 @@ class CreatePacotesTable extends Migration
     public function up()
     {
         Schema::create('pacotes', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('nome');
+            $table->text('chamada');
+            $table->integer('noites');
+            $table->boolean('pass_area');
+            $table->text('endereço')->nullable();
+            $table->text('descricao');
+            $table->text('mapa')->nullable();
+            $table->string('contato_nome');
+            $table->string('contato_tel')->nullable();
+            $table->string('contato_cel')->nullable();
+            $table->string('email');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
