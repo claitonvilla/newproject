@@ -12,6 +12,13 @@
                            <button class="btn btn-success" type="submit">Salvar</button>
                         </div>
                     </div>
+                    <ul>
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    @endif
+                    </ul>
                     <div class="form-row mt-5">
                         <div class="form-group col-sm-6">
                             <label for="exampleFormControlInput1">Nome Pacote</label>
@@ -67,7 +74,7 @@
                         </div>                        
                     </div>                        
                     <div class="form-check mb-5">
-                        <input class="form-check-input" name="pass_aerea" type="checkbox" value="" id="defaultCheck1" required>
+                        <input class="form-check-input" name="pass_aerea" type="checkbox" value="1" id="defaultCheck1">
                         <label class="form-check-label" for="defaultCheck1">
                             Incluir Passagem Aérea
                         </label>

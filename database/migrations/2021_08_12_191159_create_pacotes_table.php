@@ -18,7 +18,7 @@ class CreatePacotesTable extends Migration
             $table->string('nome');
             $table->text('chamada');
             $table->integer('noites');
-            $table->boolean('pass_aerea');
+            $table->boolean('pass_aerea')->default(0);
             $table->text('endereço')->nullable();
             $table->text('descricao');
             $table->text('mapa')->nullable();

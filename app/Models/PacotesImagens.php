@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class PacotesImagens extends Model
 {
-    protected $table = 'infos';
-    protected $fillable = [ 'id', 'pacotes_id', 'imagens-id' ];    
+    protected $table = 'pacotes_imagens';
+    protected $fillable = [ 'pacotes_id', 'imagens_id' ];  
+    protected $dates = ['created-at', 'updated-at']; 
+    
+    public function imagem()
+    {
+        return $this->belongsTo(Imagens::class, 'imagens_id');
+    }
 }

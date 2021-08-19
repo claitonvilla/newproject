@@ -47,6 +47,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::get('edit/{pacote}', [PacotesController::class, 'edit'])->name('admin.pacotes.edit');
         Route::post('update/{pacote}', [PacotesController::class, 'update'])->name('admin.pacotes.update');
         Route::get('destroy/{pacote}', [PacotesController::class, 'destroy'])->name('admin.pacotes.destroy');
+        Route::get('delete/info/{info}', [PacotesController::class, 'deleteInfo'])->name('admin.pacotes.delete.info');
+        Route::get('delete/preco/{preco}', [PacotesController::class, 'deletePricedate'])->name('admin.pacotes.delete.preco');
+        Route::get('delete/imagem/{imagem}', [PacotesController::class, 'deleteImage'])->name('admin.pacotes.delete.imagem');
     });
 
     //grupo blogues

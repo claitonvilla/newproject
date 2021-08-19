@@ -32,7 +32,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('admin.pacotes.create')}}">Adicionar Pacote</a>
-                                <a class="dropdown-item" href="#">Ver todos pacotes</a>
+                                <a class="dropdown-item" href="{{ route('admin.pacotes.index') }}">Ver todos pacotes</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">

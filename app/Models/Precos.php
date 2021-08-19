@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Precos extends Model
 {
     protected $table = 'precos';
-    protected $fillable = [ 'id', 'pacotes_id', 'from', 'to', 'price', ];
-    protected $dates = ['created-at', 'updated-at'];
+    protected $fillable = [ 'pacotes_id', 'from', 'to', 'price', ];
+    protected $dates = ['created-at', 'updated-at', 'from', 'to'];
 }

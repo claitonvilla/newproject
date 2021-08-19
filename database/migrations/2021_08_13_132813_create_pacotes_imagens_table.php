@@ -18,7 +18,8 @@ class CreatePacotesImagensTable extends Migration
             $table->integer('pacotes_id')->unsigned();
             $table->foreign('pacotes_id')->references('id')->on('pacotes')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('imagens_id')->unsigned();
-            $table->foreign('imagens_id')->references('id')->on('imagens')->onDelete('cascade')->onUpdate('cascade');            
+            $table->foreign('imagens_id')->references('id')->on('imagens')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();            
         });
     }
 

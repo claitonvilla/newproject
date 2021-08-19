@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Image;
+use App\Models\Infos;
+use App\Models\Precos;
+use App\Models\Imagens;
 use App\Models\Pacotes;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\PacotesImagens;
+use Illuminate\Support\Facades\Storage;
 
 class PacotesController extends Controller
 {
@@ -14,7 +21,8 @@ class PacotesController extends Controller
      */
     public function index()
     {
-        dd('aqui vou retornar a view admin.pacotes.index');
+        $pacotes = Pacotes::all();
+        return view('admin.pacotes.listagem', compact('pacotes'));
     }
 
     /**
@@ -35,7 +43,54 @@ class PacotesController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+
+        $validated = $request->validate([
+
+            'nome' => 'required',
+            'noites' => 'required',
+            'endereço' => 'nullable',
+            'contato_nome' => 'nullable',
+            'contato_tel' => 'nullable',
+            'contato_cel' => 'nullable',
+            'email' => 'required',
+            'chamada' => 'required',
+            'mapa' => 'nullable',
+            'descricao' => 'required',
+            'pass_aerea' => 'sometimes|accepted',
+            'infos.*.nome' => 'sometimes|required',
+            'infos.*.descricao' => 'sometimes|required',
+            'price.*.from' => 'sometimes|required|date',
+            'price.*.to' => 'sometimes|required|date',
+            'price.*.price' => 'sometimes|required|numeric',
+            'images.*' => 'sometimes|required|max:10000|mimes:jpg,jpeg,png'
+        ]);
+
+        $pacote = Pacotes::create($request->except('infos', 'price', 'images'));
+                
+        if($pacote):
+
+            foreach($validated['infos'] as $info):
+                $info['pacotes_id'] = $pacote->id;
+                Infos::create($info);                
+            endforeach;
+
+            foreach($validated['price'] as $price):
+                $price['pacotes_id'] = $pacote->id;
+                Precos::create($price);
+            endforeach;
+
+            foreach($validated['images'] as $image):
+                $this->uploadAnImage($image, $pacote->id);
+                
+            endforeach;
+
+                        
+        endif; 
+
+        return redirect()->route('admin.pacotes.index');
+        
+        
+
     }
 
     /**
@@ -56,8 +111,8 @@ class PacotesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Pacotes $pacote)
-    {
-        dd('aqui vou retornar a view admin.pacotes.edit');
+    {        
+        return view('admin.pacotes.editar', compact('pacote'));
     }
 
     /**
@@ -69,7 +124,53 @@ class PacotesController extends Controller
      */
     public function update(Request $request, Pacotes $pacote)
     {
-        dd('aqui vou retornar a view admin.pacotes.update');
+        $validated = $request->validate([
+            'nome' => 'required',
+            'noites' => 'required',
+            'endereço' => 'nullable',
+            'contato_nome' => 'nullable',
+            'contato_tel' => 'nullable',
+            'contato_cel' => 'nullable',
+            'email' => 'required',
+            'chamada' => 'required',
+            'mapa' => 'nullable',
+            'descricao' => 'required',
+            'pass_aerea' => 'sometimes|accepted',
+            'infos.*.id' => 'sometimes|required',
+            'infos.*.nome' => 'sometimes|required',
+            'infos.*.descricao' => 'sometimes|required',
+            'price.*.id' => 'sometimes|required',
+            'price.*.from' => 'sometimes|required|date',
+            'price.*.to' => 'sometimes|required|date',
+            'price.*.price' => 'sometimes|required|numeric',
+            'images.*' => 'sometimes|required|max:10000|mimes:jpg,jpeg,png'
+        ]);
+
+        $pacote->update($request->except('infos', 'price', 'images'));
+
+        foreach($validated['infos'] as $info):
+
+            if(isset($info['id'])):
+                $ninfo = Infos::find($info['id']);
+                $ninfo->update($info);
+            else:
+                $info['pacotes_id'] = $pacote->id;
+                Infos::create($info);
+            endif;
+                           
+        endforeach;
+
+
+
+
+
+
+
+
+
+        return redirect()->back();        
+
+       
     }
 
     /**
@@ -82,4 +183,53 @@ class PacotesController extends Controller
     {
         dd('aqui vou retornar a view admin.pacotes.destroy');
     }
+
+    public function uploadAnImage($image, $pacoteId)
+	{
+
+        $newName        = Str::uuid()->toString();
+        $originalName   = $image->getClientOriginalName();
+        $originalMime   = $image->getClientMimeType();
+        $originalSize   = $image->getSize();
+        $extension      = $image->getClientOriginalExtension();        
+
+        $img = Image::make($image->getRealPath());
+        $directory = storage_path("app/public/");
+
+        Storage::makeDirectory("public");
+
+        $imagem = Imagens::create([
+            'name' => $newName, 
+            'size' => $originalSize,
+            'real-name' => $originalName,
+            'extension' => $extension,
+            'mime' => $originalMime
+        ]);
+
+        PacotesImagens::create([
+            'pacotes_id' => $pacoteId,
+            'imagens_id' => $imagem->id
+        ]);
+	}
+
+    public function deleteInfo(Infos $info)
+    {
+        $info->delete();
+        return redirect()->back();
+    }
+
+    public function deletePricedate(Precos $preco)
+    {
+        $preco->delete();
+        return redirect()->back();
+    }
+
+    public function deleteImage(Imagens $imagem)
+    {
+        $imagem->delete();
+        return redirect()->back();
+    }
+
+
+
 }
