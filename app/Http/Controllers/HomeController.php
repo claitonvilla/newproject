@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blogues;
+use App\Models\Imagens;
+use App\Models\Pacotes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -23,12 +27,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('website.home');
     }
 
     public function sobreNos()
     {
-        dd('aqui vou retornar a view sobrenos');
+        return view('website.aboutUs');
     }
 
     public function termos()
@@ -45,4 +49,32 @@ class HomeController extends Controller
     {
         return view('admin.index');
     }
+
+    public function showImage(Imagens $imagem)
+    {
+        $name = $imagem->name;
+        $file = Storage::path("public/{$name}");
+        return response()->file($file, ["Content-Type"=> $imagem->mime]);
+    }
+
+    public function pacotes()
+    {
+        return view('website.packages');
+    }
+
+    public function pacoteShow(Pacotes $pacote)
+    {
+        return view('website.packagesDetails', compact('pacote'));
+    }
+
+    public function blogs()
+    {
+        return view('website.blogs');
+    }
+
+    public function blogShow(Blogues $blog)
+    {
+        return view('website.blogsDetails', compact('blog'));
+    }
+
 }

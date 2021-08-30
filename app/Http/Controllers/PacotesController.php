@@ -148,24 +148,39 @@ class PacotesController extends Controller
 
         $pacote->update($request->except('infos', 'price', 'images'));
 
-        foreach($validated['infos'] as $info):
+        if(isset($validated['infos'])):
+            foreach($validated['infos'] as $info):
 
-            if(isset($info['id'])):
-                $ninfo = Infos::find($info['id']);
-                $ninfo->update($info);
-            else:
-                $info['pacotes_id'] = $pacote->id;
-                Infos::create($info);
-            endif;
-                           
-        endforeach;
+                if(isset($info['id'])):
+                    $ninfo = Infos::find($info['id']);
+                    $ninfo->update($info);
+                else:
+                    $info['pacotes_id'] = $pacote->id;
+                    Infos::create($info);
+                endif;
+                            
+            endforeach;
+        endif;
 
+        if(isset($validated['price'])):
+            foreach($validated['price'] as $price):
 
+                if(isset($price['id'])):
+                    $nprice = Precos::find($price['id']);
+                    $nprice->update($price);
+                else:
+                    $price['pacotes_id'] = $pacote->id;
+                    Precos::create($price);
+                endif;
+                
+            endforeach;
+        endif;
 
-
-
-
-
+        if(isset($validated['images'])):
+            foreach($validated['images'] as $image):
+                $this->uploadAnImage($image, $pacote->id);
+            endforeach;  
+        endif;
 
 
         return redirect()->back();        
@@ -181,7 +196,8 @@ class PacotesController extends Controller
      */
     public function destroy(Pacotes $pacote)
     {
-        dd('aqui vou retornar a view admin.pacotes.destroy');
+        $pacote->delete();
+        return redirect()->back();
     }
 
     public function uploadAnImage($image, $pacoteId)
@@ -197,6 +213,7 @@ class PacotesController extends Controller
         $directory = storage_path("app/public/");
 
         Storage::makeDirectory("public");
+        $image->move($directory, $newName);
 
         $imagem = Imagens::create([
             'name' => $newName, 

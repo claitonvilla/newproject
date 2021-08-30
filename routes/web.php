@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BloguesController;
 use App\Http\Controllers\PacotesController;
+use App\Http\Controllers\DepoimentosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +24,12 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('sobre-nos', [HomeController::class, 'sobreNos'])->name('home.sobre');
 Route::get('termos', [HomeController::class, 'termos'])->name('home.termos');
 Route::get('contate-nos', [HomeController::class, 'contateNos'])->name('home.contato');
-
-
-
+Route::get('imagem/{imagem}', [HomeController::class, 'showImage'])->name('home.imagem');
+Route::get('pacotes', [HomeController::class, 'pacotes'])->name('home.pacotes');
+Route::get('pacotes/{pacote}', [HomeController::class, 'pacoteShow'])->name('home.pacotes.show');
+Route::get('blogs', [HomeController::class, 'blogs'])->name('home.blogs');
+Route::get('about', [HomeController::class, 'sobreNos'])->name('home.more.about');
+Route::get('blogs/{blog}', [HomeController::class, 'blogShow'])->name('home.blogs.show');
 
 
 
@@ -41,12 +46,15 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     //grupo pacotes
     Route::group(['prefix' => 'pacotes'], function () {
         //rotas simples get e post
-        Route::get('/', [PacotesController::class, 'index'])->name('admin.pacotes.index');
-        Route::get('create', [PacotesController::class, 'create'])->name('admin.pacotes.create');
-        Route::post('store', [PacotesController::class, 'store'])->name('admin.pacotes.store');
-        Route::get('edit/{pacote}', [PacotesController::class, 'edit'])->name('admin.pacotes.edit');
-        Route::post('update/{pacote}', [PacotesController::class, 'update'])->name('admin.pacotes.update');
-        Route::get('destroy/{pacote}', [PacotesController::class, 'destroy'])->name('admin.pacotes.destroy');
+        Route::get('/', [PacotesController::class, 'index'])->name('admin.pacotes.index');//listar todos os dados criados
+
+        Route::get('create', [PacotesController::class, 'create'])->name('admin.pacotes.create');//link para ver o formulario de criaçao
+        Route::post('store', [PacotesController::class, 'store'])->name('admin.pacotes.store');// link para salvar o formulario de criaçao
+
+        Route::get('edit/{pacote}', [PacotesController::class, 'edit'])->name('admin.pacotes.edit');//link para ver o formulario de edição
+        Route::post('update/{pacote}', [PacotesController::class, 'update'])->name('admin.pacotes.update');//link para salvar o formulario de ediçao
+
+        Route::get('destroy/{pacote}', [PacotesController::class, 'destroy'])->name('admin.pacotes.destroy');//deletar um dado criado
         Route::get('delete/info/{info}', [PacotesController::class, 'deleteInfo'])->name('admin.pacotes.delete.info');
         Route::get('delete/preco/{preco}', [PacotesController::class, 'deletePricedate'])->name('admin.pacotes.delete.preco');
         Route::get('delete/imagem/{imagem}', [PacotesController::class, 'deleteImage'])->name('admin.pacotes.delete.imagem');

@@ -14,7 +14,8 @@ class BloguesController extends Controller
      */
     public function index()
     {
-        dd('aqui vou retornar a view admin.blogues.index');
+        $blogues = Blogues::all();
+        return view('admin.blogs.listagemblog', compact('blogues'));
     }
 
     /**
@@ -24,7 +25,7 @@ class BloguesController extends Controller
      */
     public function create()
     {
-        dd('aqui vou retornar a view admin.blogues.create');
+        return view('admin.blogs.criarblog');
     }
 
     /**
@@ -35,7 +36,17 @@ class BloguesController extends Controller
      */
     public function store(Request $request)
     {
-        dd('aqui vou retornar a view admin.blogues.store');
+        $validated = $request->validate([
+            'nome' => 'required',
+            'autor' => 'required',
+            'conteudo' => 'required' 
+        ]);
+
+        $validated['views']=0;
+
+        
+        Blogues::create($validated);
+        return redirect()->route('admin.blogues.index');
     }
 
     /**
@@ -57,7 +68,7 @@ class BloguesController extends Controller
      */
     public function edit(Blogues $blogue)
     {
-        dd('aqui vou retornar a view admin.blogues.edit');
+        return view('admin.blogs.editarblog', compact('blogue'));
     }
 
     /**
@@ -69,7 +80,16 @@ class BloguesController extends Controller
      */
     public function update(Request $request, Blogues $blogue)
     {
-        dd('aqui vou retornar a view admin.blogues.update');
+        $validated = $request->validate([
+
+            'nome' => 'required',
+            'autor' => 'required',
+            'views' => 'nullable',
+            'conteudo' => 'required' 
+        ]);
+
+        $blogue->update($validated);        
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +100,7 @@ class BloguesController extends Controller
      */
     public function destroy(Blogues $blogue)
     {
-        dd('aqui vou retornar a view admin.blogues.destroy');
+        $blogue->delete();
+        return redirect()->back();
     }
 }

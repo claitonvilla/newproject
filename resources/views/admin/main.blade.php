@@ -41,8 +41,8 @@
                                 Blogues
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Adicionar Blogue</a>
-                                <a class="dropdown-item" href="#">Ver todos blogues</a>
+                                <a class="dropdown-item" href="{{ route('admin.blogues.create') }}">Adicionar Blogue</a>
+                                <a class="dropdown-item" href="{{ route('admin.blogues.index') }}">Ver todos blogues</a>
                             </div>
                         </li>  
                         <li class="nav-item dropdown">
@@ -51,8 +51,8 @@
                                 Depoimentos
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Adicionar Depoimento</a>
-                                <a class="dropdown-item" href="#">Ver todos depoimentos</a>
+                                <a class="dropdown-item" href="{{ route('admin.depoimentos.create') }}">Adicionar Depoimento</a>
+                                <a class="dropdown-item" href="{{ route('admin.depoimentos.index') }}">Ver todos depoimentos</a>
                             </div>
                         </li>                          
                     </ul>

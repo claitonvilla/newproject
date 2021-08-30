@@ -1,4 +1,25 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/img/about-1-570x350 (1).jpg": "/img/about-1-570x350 (1).jpg",
+    "/img/about-1-570x350.jpg": "/img/about-1-570x350.jpg",
+    "/img/blog-1-370x270.jpg": "/img/blog-1-370x270.jpg",
+    "/img/blog-2-370x270.jpg": "/img/blog-2-370x270.jpg",
+    "/img/blog-3-370x270.jpg": "/img/blog-3-370x270.jpg",
+    "/img/heading-6-1920x500.jpg": "/img/heading-6-1920x500.jpg",
+    "/img/other-image-fullscren-1-1920x900.jpg": "/img/other-image-fullscren-1-1920x900.jpg",
+    "/img/product-1-370x270.jpg": "/img/product-1-370x270.jpg",
+    "/img/product-1a-370x270.jpg": "/img/product-1a-370x270.jpg",
+    "/img/product-2-370x270.jpg": "/img/product-2-370x270.jpg",
+    "/img/product-2a-370x270.jpg": "/img/product-2a-370x270.jpg",
+    "/img/product-3-370x270.jpg": "/img/product-3-370x270.jpg",
+    "/img/product-3a-370x270.jpg": "/img/product-3a-370x270.jpg",
+    "/img/product-4-370x270.jpg": "/img/product-4-370x270.jpg",
+    "/img/product-5-370x270.jpg": "/img/product-5-370x270.jpg",
+    "/img/product-6-370x270.jpg": "/img/product-6-370x270.jpg",
+    "/img/product-details-1-740x540.jpg": "/img/product-details-1-740x540.jpg",
+    "/img/slider-image-1-1920x600.jpg": "/img/slider-image-1-1920x600.jpg",
+    "/img/slider-image-2-1920x600.jpg": "/img/slider-image-2-1920x600.jpg",
+    "/img/slider-image-3-1920x600.jpg": "/img/slider-image-3-1920x600.jpg",
+    "/img/blog-image-fullscren-1-1920x700.jpg": "/img/blog-image-fullscren-1-1920x700.jpg"
 }

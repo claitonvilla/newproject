@@ -27,7 +27,7 @@
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <a href="{{ route('admin.pacotes.edit', [$pacote->id]) }}" class="btn btn-info btn-sm active" role="button" aria-pressed="true">Editar</a>
-                            <a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Deletar</a>               
+                            <a href="{{ route('admin.pacotes.destroy', [$pacote->id]) }}" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Deletar</a>               
                         </div>               
                     </td>
                     </tr>            
