@@ -14071,11 +14071,15 @@ section#cont .all .formbox .all-form form .form-group textarea {
   border: 1px solid #eee;
 }
 section#cont .all .formbox .quadroSocial .textSocial p {
-  color: green;
+  color: #4a4a4a;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 24px;
+  margin: 45px 0 30px;
 }
 section#cont .all .formbox .quadroSocial .social-icon .icons {
   display: flex;
-  padding-left: 0px;
 }
 section#cont .all .formbox .quadroSocial .social-icon .icons .socialIcon a {
   width: 50px;

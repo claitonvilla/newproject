@@ -160,13 +160,18 @@ section#cont {
             .quadroSocial {
                 .textSocial {
                     p {
-                        color: green;
+                        color: #4a4a4a;
+                        font-family: 'Poppins', sans-serif;
+                        font-size: 14px;
+                        font-weight: 300; 
+                        line-height: 24px;
+                        margin: 45px 0 30px;
                     }
                 }
                 .social-icon {
                     .icons {
                         display: flex;
-                        padding-left: 0px;
+                        
                         .socialIcon {
                             a {
                                 width: 50px;
