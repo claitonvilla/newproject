@@ -81,6 +81,9 @@
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
                                 placeholder="Notes"></textarea>
                         </div>
+                        <div class="button">
+                            <a class="btn btn-danger" href="#" role="button">Submit</a>
+                        </div>
                     </form>
                 </div>
                 <div class="col-sm-4 quadroSocial">

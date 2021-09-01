@@ -232,7 +232,7 @@ section#blogs {
     }
 }
 section#depoimentos {
-    margin: 100px 0 40px 0;
+    padding: 100px 0 40px 0;
     .deps {
         .depoviews {
             display: flex;
@@ -288,7 +288,8 @@ section#depoimentos {
                     font-family: 'Poppins', sans-serif;                    
                     color: #1a6692;                    
                     text-align: center;
-                    margin: 40px 0 20px 0;
+                    padding: 40px 15px 20px;
+                    margin: 0px;
                     
 
                 }
@@ -299,6 +300,8 @@ section#depoimentos {
                     color: #4a4a4a;
                     line-height: 24px; 
                     text-align: center;
+                    padding: 0 15px 25px;
+                    margin-bottom: 35px;
                 }
             }
 
@@ -328,5 +331,22 @@ section#depoimentos {
                 }
             }
         }
+    }
+    &.interna {
+        background-color: #f1f1f1;
+        .deps {
+            .quadros {
+                .infosDep {
+                    h4 {
+                        background-color: #fff;
+                    }
+                    p {
+                        background-color: #fff;
+                    }
+                }
+
+            }
+        }
+
     }
 }

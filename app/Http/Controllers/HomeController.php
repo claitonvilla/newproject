@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blogues;
 use App\Models\Imagens;
 use App\Models\Pacotes;
+use App\Models\Depoimentos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -37,12 +38,12 @@ class HomeController extends Controller
 
     public function termos()
     {
-        dd('aqui vou retornar a view termos');
+        return view('website.terms');
     }
 
     public function contateNos()
     {
-        dd('aqui vou retornar a view contatenos');
+        return view('website.contactUs');
     }
 
     public function admin()
@@ -76,5 +77,12 @@ class HomeController extends Controller
     {
         return view('website.blogsDetails', compact('blog'));
     }
+
+    public function depoimentoShow(Depoimentos $depoimento)
+    {
+        return view('website.testemonials', compact('depoimento'));
+    }
+
+    
 
 }
