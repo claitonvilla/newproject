@@ -10,7 +10,7 @@
                 LOREM IPSUM DOLOR SIT
             </h1>
             <p>
-                TERMS
+                Contate-nos
             </p>
         </div>
     </section>
@@ -68,22 +68,25 @@
             </div>
             <div class="row formbox">
                 <div class="col-sm-8 all-form">
-                    <form action="">
+                    <form action="{{ route('home.email') }}" method="POST">
+
+                        @csrf
+
                         <div class="form-group">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Full Name">
+                            <input type="text" name="nome" class="form-control" id="exampleFormControlInput1" placeholder="Full Name">
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="E-mail Adress">
+                            <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="E-mail Adress">
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Subject">
+                            <input type="text" name="assunto" class="form-control" id="exampleFormControlInput1" placeholder="Subject">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                            <textarea name="conteudo" class="form-control" id="exampleFormControlTextarea1" rows="3"
                                 placeholder="Your Message"></textarea>
                         </div>
                         <div class="button">
-                            <a class="btn btn-danger" href="#" role="button">Send Message</a>
+                            <button type="submit" class="btn btn-danger">Send Message</button>
                         </div>
                     </form>
                 </div>

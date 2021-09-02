@@ -16,47 +16,32 @@
 <section class="container-fluid interna" id="depoimentos">
     <div class="container deps">        
         <div class="row quadros">
+
+
+            @foreach ($depoimentos as $depoimento)
+                
+            
             <div class="col-sm-4 infosDep">
                 <div class="imagens">
                     <div class="img">
-                        <i class="fa fa-user"></i>
+                        <div class="" style="background-image: url('{{ route('home.imagem', [$depoimento->imagens_id])}}')"></div>
                     </div>
                 </div>
                 <h4>
-                    John Doe
+                    {{ $depoimento->name }}
                 </h4>
                 <p>
-                    "Lorem ipsum dolor sit amet, consectetur an adipisicing elit. Itaque, corporis nulla at quia quaerat."
+                    "{{ $depoimento->testemonial }}"
                 </p>
             </div>
-            <div class="col-sm-4 infosDep">
-                <div class="imagens">
-                    <div class="img">
-                        <i class="fa fa-user"></i>
-                    </div>
-                </div>
-                <h4>
-                    John Doe
-                </h4>
-                <p>
-                    "Lorem ipsum dolor sit amet, consectetur an adipisicing elit. Itaque, corporis nulla at quia quaerat."
-                </p>
-            </div>
-            <div class="col-sm-4 infosDep">
-                <div class="imagens">
-                    <div class="img">
-                        <i class="fa fa-user"></i>
-                    </div>
-                </div>
-                <h4>
-                    John Doe
-                </h4>
-                <p>
-                    "Lorem ipsum dolor sit amet, consectetur an adipisicing elit. Itaque, corporis nulla at quia quaerat."
-                </p>
-            </div>
+
+
+            @endforeach
+
+
+           
         </div>  
-        <div class="row quadros">
+        {{-- <div class="row quadros">
             <div class="col-sm-4 infosDep">
                 <div class="imagens">
                     <div class="img">
@@ -96,7 +81,7 @@
                     "Lorem ipsum dolor sit amet, consectetur an adipisicing elit. Itaque, corporis nulla at quia quaerat."
                 </p>
             </div>
-        </div> 
+        </div>  --}}
     </div> 
 </section>
 

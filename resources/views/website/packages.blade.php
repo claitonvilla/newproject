@@ -15,122 +15,34 @@
     <section class="container-fluid" id="allpackages">
         <div class="container packs">
             <div class="row lineOne">
-                <div class="col-sm-4 unicpack ">
-                    <div class="card" style="">
-                        <a href=""><img src="img/product-1a-370x270.jpg" class="card-img-top" style="text-decoration:none"
-                                alt="..."></a>
-                        <div class="card-body">
-                            <a href="" style="text-decoration:none">
-                                <h4 class="card-title">Limelight Lodge</h4>
+
+                @foreach ($pacotes as $pacote)
+                
+                    <div class="col-sm-4 unicpack ">
+                        <div class="card" style="">
+                            <a href="{{ route('home.pacotes.show', [$pacote->id]) }}" style="background-image: url('{{ route('home.imagem', [$pacote->imagens[0]->imagem->id]) }}');">
+                                <img src="{{ route('home.imagem', [$pacote->imagens[0]->imagem->id]) }}" class="card-img-top" style="text-decoration:none" alt="...">
                             </a>
-                            <h6 class="card-title">$300 - $400</h6>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum incidunt,
-                                aperiam nostrum et. Voluptas vel labore numqua..</p>
-                            <div class="icones">
-                                <div class="icon"><i class="fa fa-calendar"></i>Spring</div>
-                                <div class="icon"><i class="fa fa-cube"></i>Nights</div>
-                                <div class="icon"><i class="fa fa-plane"></i>Fligh included</div>
+                            <div class="card-body">
+                                <a href="" style="text-decoration:none">
+                                    <h4 class="card-title">{{ $pacote->nome }}</h4>
+                                </a>
+                                <h6 class="card-title"> ${{ $pacote->precos->min('price') }},00 - ${{ $pacote->precos->max('price') }},00</h6>
+                                <p class="card-text">{{ $pacote->chamada }}</p>
+                                <div class="icones">
+                                    <div class="icon"><i class="fa fa-calendar"></i> {{ Helper::getEstacao($pacote->precos[0]->from) }}</div>
+                                    <div class="icon"><i class="fa fa-cube"></i> {{ $pacote->noites }} Nights</div>
+                                    @if ($pacote->pass_aerea == 1)
+                                    <div class="icon"><i class="fa fa-plane"></i> Fligh included</div>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 unicpack ">
-                    <div class="card" style="">
-                        <a href=""><img src="img/product-1a-370x270.jpg" class="card-img-top" style="text-decoration:none"
-                                alt="..."></a>
-                        <div class="card-body">
-                            <a href="" style="text-decoration:none">
-                                <h4 class="card-title">Limelight Lodge</h4>
-                            </a>
-                            <h6 class="card-title">$300 - $400</h6>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum incidunt,
-                                aperiam nostrum et. Voluptas vel labore numqua..</p>
-                            <div class="icones">
-                                <div class="icon"><i class="fa fa-calendar"></i>Spring</div>
-                                <div class="icon"><i class="fa fa-cube"></i>Nights</div>
-                                <div class="icon"><i class="fa fa-plane"></i>Fligh included</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 unicpack ">
-                    <div class="card" style="">
-                        <a href=""><img src="img/product-1a-370x270.jpg" class="card-img-top" style="text-decoration:none"
-                                alt="..."></a>
-                        <div class="card-body">
-                            <a href="" style="text-decoration:none">
-                                <h4 class="card-title">Limelight Lodge</h4>
-                            </a>
-                            <h6 class="card-title">$300 - $400</h6>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum incidunt,
-                                aperiam nostrum et. Voluptas vel labore numqua..</p>
-                            <div class="icones">
-                                <div class="icon"><i class="fa fa-calendar"></i>Spring</div>
-                                <div class="icon"><i class="fa fa-cube"></i>Nights</div>
-                                <div class="icon"><i class="fa fa-plane"></i>Fligh included</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row lineOne">
-                <div class="col-sm-4 unicpack ">
-                    <div class="card" style="">
-                        <a href=""><img src="img/product-1a-370x270.jpg" class="card-img-top" style="text-decoration:none"
-                                alt="..."></a>
-                        <div class="card-body">
-                            <a href="" style="text-decoration:none">
-                                <h4 class="card-title">Limelight Lodge</h4>
-                            </a>
-                            <h6 class="card-title">$300 - $400</h6>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum incidunt,
-                                aperiam nostrum et. Voluptas vel labore numqua..</p>
-                            <div class="icones">
-                                <div class="icon"><i class="fa fa-calendar"></i>Spring</div>
-                                <div class="icon"><i class="fa fa-cube"></i>Nights</div>
-                                <div class="icon"><i class="fa fa-plane"></i>Fligh included</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 unicpack ">
-                    <div class="card" style="">
-                        <a href=""><img src="img/product-1a-370x270.jpg" class="card-img-top" style="text-decoration:none"
-                                alt="..."></a>
-                        <div class="card-body">
-                            <a href="" style="text-decoration:none">
-                                <h4 class="card-title">Limelight Lodge</h4>
-                            </a>
-                            <h6 class="card-title">$300 - $400</h6>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum incidunt,
-                                aperiam nostrum et. Voluptas vel labore numqua..</p>
-                            <div class="icones">
-                                <div class="icon"><i class="fa fa-calendar"></i>Spring</div>
-                                <div class="icon"><i class="fa fa-cube"></i>Nights</div>
-                                <div class="icon"><i class="fa fa-plane"></i>Fligh included</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 unicpack ">
-                    <div class="card" style="">
-                        <a href=""><img src="img/product-1a-370x270.jpg" class="card-img-top" style="text-decoration:none"
-                                alt="..."></a>
-                        <div class="card-body">
-                            <a href="" style="text-decoration:none">
-                                <h4 class="card-title">Limelight Lodge</h4>
-                            </a>
-                            <h6 class="card-title">$300 - $400</h6>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum incidunt,
-                                aperiam nostrum et. Voluptas vel labore numqua..</p>
-                            <div class="icones">
-                                <div class="icon"><i class="fa fa-calendar"></i>Spring</div>
-                                <div class="icon"><i class="fa fa-cube"></i>Nights</div>
-                                <div class="icon"><i class="fa fa-plane"></i>Fligh included</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    </div>  
+
+                @endforeach
+
+
             </div>
             <div class="row">
                 <div class="col-sm-12">

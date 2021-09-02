@@ -49,10 +49,45 @@
         <div class="container">
             <div class="featured">
                 <div class="title">Featured Vacations</div>
-                <div class="moreInfos"><a href="" style="text-decoration:none">VIEW MORE></a></div>
+                <div class="moreInfos"><a href="{{ route('home.pacotes') }}" style="text-decoration:none">VIEW MORE></a></div>
             </div>
             <div class="row cartao">
-                <div class="col-sm-4">
+
+                @foreach ($pacotes as $pacote)
+
+
+                    <div class="col-sm-4">
+                        <div class="card" style="">
+                            <a href="{{ route('home.pacotes.show', [$pacote->id]) }}" style="background-image: url('{{ route('home.imagem', [$pacote->imagens[0]->imagem->id]) }}')">
+                                <img src="{{ route('home.imagem', [$pacote->imagens[0]->imagem->id]) }}"
+                                class="card-img-top" style="text-decoration:none" alt="...">
+                            </a>
+                            <div class="card-body">
+                                <a href="{{ route('home.pacotes.show', [$pacote->id]) }}" style="text-decoration:none">
+                                    <h4 class="card-title">{{ $pacote->nome }}</h4>
+                                </a>
+                                <h6 class="card-title"> ${{ $pacote->precos->min('price') }},00 -
+                                    ${{ $pacote->precos->max('price') }},00</h6>
+                                <p class="card-text">{{ $pacote->chamada }}</p>
+                                <div class="icones">
+                                    <div class="icon"><i class="fa fa-calendar"></i>
+                                        {{ Helper::getEstacao($pacote->precos[0]->from) }}</div>
+                                    <div class="icon"><i class="fa fa-cube"></i>
+                                        {{ $pacote->precos[0]->to->format('Ymd') - $pacote->precos[0]->from->format('Ymd') }}
+                                        Nights</div>
+                                    @if ($pacote->pass_aerea == 1)
+                                        <div class="icon"><i class="fa fa-plane"></i>Fligh included</div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                @endforeach
+
+
+                {{-- <div class="col-sm-4">
                     <div class="card" style="">
                         <a href=""><img src="img/product-1-370x270.jpg" class="card-img-top" style="text-decoration:none"
                                 alt="..."></a>
@@ -89,26 +124,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="card" style="">
-                        <a href=""><img src="img/product-1-370x270.jpg" class="card-img-top" style="text-decoration:none"
-                                alt="..."></a>
-                        <div class="card-body">
-                            <a href="" style="text-decoration:none">
-                                <h4 class="card-title">Limelight Lodge</h4>
-                            </a>
-                            <h6 class="card-title">$300 - $400</h6>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum incidunt,
-                                aperiam nostrum et. Voluptas vel labore numqua..</p>
-                            <div class="icones">
-                                <div class="icon"><i class="fa fa-calendar"></i>Spring</div>
-                                <div class="icon"><i class="fa fa-cube"></i>Nights</div>
-                                <div class="icon"><i class="fa fa-plane"></i>Fligh included</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </div> --}}
             </div>
             <div class="row sobre">
                 <div class="col-sm-12">
@@ -126,7 +142,7 @@
                         <li><a href="" style="text-decoration:none">It aquecorporis nulla aspernatur</a></li>
                         <li><a href="" style="text-decoration:none">Corporis, omnis doloremque</a></li>
                     </ul>
-                    <a class="btn btn-danger" href="#" role="button">Read More</a>
+                    <a class="btn btn-danger" href="{{ route('home.more.about') }}" role="button">Read More</a>
                 </div>
                 <div class="col-sm-6 imagem">
                     <img src="img/about-1-570x350.jpg" width="100%" alt="">
@@ -139,45 +155,32 @@
         <div class="container painel">
             <div class="blogsviews">
                 <div class="title">Latest blog posts</div>
-                <div class="moreBlogs"><a href="" style="text-decoration:none">VIEW MORE></a></div>
+                <div class="moreBlogs"><a href="{{ route('home.blogs') }}" style="text-decoration:none">VIEW MORE></a></div>
             </div>
             <div class="row allcards">
-                <div class="col-sm-4 cardblog">
-                    <div class="card" style="">
-                        <a href=""><img src="img/blog-1-370x270.jpg" class="card-img-top" style="text-decoration:none"
-                                alt="..."></a>
-                        <div class="card-body">
-                            <a href="" style="text-decoration:none">
-                                <h4 class="card-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit hic</h4>
-                            </a>
-                            <p class="card-text">John Doe   |   12/06/2020 10:30   |   114</p>
+
+
+                @foreach ($blogues as $blogue)
+
+
+                    <div class="col-sm-4 cardblog">
+                        <div class="card" style="">
+                            <a href="{{ route('home.blogs.show', [$blogue->id]) }}"><img src="img/blog-1-370x270.jpg" class="card-img-top" style="text-decoration:none"
+                                    alt="..."></a>
+                            <div class="card-body">
+                                <a href="{{ route('home.blogs.show', [$blogue->id]) }}" style="text-decoration:none">
+                                    <h4 class="card-title">{{ $blogue->nome}}
+                                    </h4>
+                                </a>
+                                <p class="card-text">{{ $blogue->autor }} | {{ $blogue->created_at->format('d-m-Y') }} | {{ $blogue->views}}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-4 cardblog">
-                    <div class="card" style="">
-                        <a href=""><img src="img/blog-1-370x270.jpg" class="card-img-top" style="text-decoration:none"
-                                alt="..."></a>
-                        <div class="card-body">
-                            <a href="" style="text-decoration:none">
-                                <h4 class="card-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit hic</h4>
-                            </a>
-                            <p class="card-text">John Doe   |   12/06/2020 10:30   |   114</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4 cardblog">
-                    <div class="card" style="">
-                        <a href=""><img src="img/blog-1-370x270.jpg" class="card-img-top" style="text-decoration:none"
-                                alt="..."></a>
-                        <div class="card-body">
-                            <a href="" style="text-decoration:none">
-                                <h4 class="card-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit hic</h4>
-                            </a>
-                            <p class="card-text">John Doe   |   12/06/2020 10:30   |   114</p>
-                        </div>
-                    </div>
-                </div>                
+
+
+                @endforeach
+
+                
             </div>
         </div>
     </section>
@@ -185,59 +188,44 @@
         <div class="container deps">
             <div class="depoviews">
                 <div class="title">Happy Clients</div>
-                <div class="moreDepo"><a href="" style="text-decoration:none">VIEW MORE></a></div>
+                <div class="moreDepo"><a href="{{ route('home.depoimentos.show') }}" style="text-decoration:none">VIEW MORE></a></div>
             </div>
             <div class="row quadros">
+
+
+                @foreach ($depoimentos as $depoimento)
+                    
+                
+                
                 <div class="col-sm-4 infosDep">
                     <div class="imagens">
                         <div class="img">
-                            <i class="fa fa-user"></i>
+                            <div class="" style="background-image: url('{{ route('home.imagem', [$depoimento->imagens_id])}}')"></div>
                         </div>
                     </div>
                     <h4>
-                        John Doe
+                        {{ $depoimento->name }}
                     </h4>
                     <p>
-                        "Lorem ipsum dolor sit amet, consectetur an adipisicing elit. Itaque, corporis nulla at quia quaerat."
+                        "{{ $depoimento->testemonial }}"
                     </p>
                 </div>
-                <div class="col-sm-4 infosDep">
-                    <div class="imagens">
-                        <div class="img">
-                            <i class="fa fa-user"></i>
-                        </div>
-                    </div>
-                    <h4>
-                        John Doe
-                    </h4>
-                    <p>
-                        "Lorem ipsum dolor sit amet, consectetur an adipisicing elit. Itaque, corporis nulla at quia quaerat."
-                    </p>
-                </div>
-                <div class="col-sm-4 infosDep">
-                    <div class="imagens">
-                        <div class="img">
-                            <i class="fa fa-user"></i>
-                        </div>
-                    </div>
-                    <h4>
-                        John Doe
-                    </h4>
-                    <p>
-                        "Lorem ipsum dolor sit amet, consectetur an adipisicing elit. Itaque, corporis nulla at quia quaerat."
-                    </p>
-                </div>
-            </div>            
+                
+                
+                
+                @endforeach
+                
+            </div>
             <div class="contact">
                 <div class="text">
                     <h4>Lorem ipsum dolor sit amet, consectetur adipisicing.</h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque corporis amet elite author nulla</p>
                 </div>
                 <div>
-                    <a class="btn btn-danger" href="#" role="button">Contact Us</a>
-                </div>            
-            </div> 
-        </div> 
+                    <a class="btn btn-danger" href="{{ route('home.contato') }}" role="button">Contact Us</a>
+                </div>
+            </div>
+        </div>
     </section>
 
 

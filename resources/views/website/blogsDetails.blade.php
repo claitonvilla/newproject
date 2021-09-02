@@ -7,11 +7,11 @@
         style="background-image: url('{{ asset('img/heading-6-1920x500.jpg') }}')">
         <div class="row">
             <div class="icones">
-                <div class="icon"><i class="fa fa-user"></i>JOHN DOE</div>
-                <div class="icon"><i class="fa fa-calendar"></i>12/06/2020 10:30</div>
-                <div class="icon"><i class="fa fa-eye"></i>114</div>
+                <div class="icon"><i class="fa fa-user"></i> {{ $blog->autor }}</div>
+                <div class="icon"><i class="fa fa-calendar"></i> {{ $blog->created_at->format('d-m-Y') }}</div>
+                <div class="icon"><i class="fa fa-eye"></i> {{ $blog->views }}</div>
             </div>
-            <p>LOREM IPSUM DOLOR SIT AMET,<br>CONSECTETUR ADIPISICING</p>
+            <p>{{ $blog->nome }}</p>
 
         </div>
     </section>
@@ -19,33 +19,13 @@
         <div class="container all">
             <div class="row title">
                 <div class="col-sm-12 texttitle">
-                    <h1>Lorem ipsum dolor sit amet, consectetur.</h1>
+                    <h1>{{ $blog->nome }}</h1>
                 </div>
             </div>
             <div class="row conteudo">
                 <div class="col-sm-12 quadro">
                     <div class="col-sm-8 quadroesquerdo">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, sed. Ex, id autem cum
-                            assumenda,
-                            quisquam cupiditate amet dolorem atque ipsam pariatur sequi voluptatem est nesciunt eum,
-                            aspernatur,
-                            tenetur rem.<br><br>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, consequatur, magnam.
-                            Dolorum
-                            vitae a vel quisquam. Fuga quia suscipit id veritatis sint earum impedit corporis quidem eum
-                            consectetur ipsam ex sequi ad, distinctio enim tenetur eveniet eligendi. Laborum, sapiente,
-                            magnam.
-                        </p><br>
-                        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, modi.</h2><br>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam officia in adipisci. Corporis
-                            rem
-                            beatae cupiditate neque consequuntur necessitatibus expedita laudantium temporibus quam ex
-                            quidem,
-                            aut non blanditiis soluta deserunt dolores mollitia repudiandae voluptatibus perspiciatis dolor
-                            quos
-                            distinctio! Atque, magnam.<br><br>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt dolore ducimus, ad itaque
-                            reprehenderit repellat dignissimos, qui velit dolores volupta</p>
+                        {!! $blog->conteudo !!}
                     </div>
                     <div class="col-sm-4 quadrodireito">
                         <h2>Lorem ipsum dolor sit amet.</h2><br>

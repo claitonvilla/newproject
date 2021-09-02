@@ -44,9 +44,11 @@ section#allpackages {
                 .card {
                     
                     a {
-                        img {
-                            border-radius: 0;                            
-                        }
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        width: 100%;
+                        height: 254px;
                     }
                     .card-body {
                         a {

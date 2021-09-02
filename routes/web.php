@@ -30,10 +30,10 @@ Route::get('pacotes/{pacote}', [HomeController::class, 'pacoteShow'])->name('hom
 Route::get('blogs', [HomeController::class, 'blogs'])->name('home.blogs');
 Route::get('about', [HomeController::class, 'sobreNos'])->name('home.more.about');
 Route::get('blogs/{blog}', [HomeController::class, 'blogShow'])->name('home.blogs.show');
-Route::get('depoimentos/{depoimento}', [Homecontroller::class, 'depoimentoShow'])->name('home.depoimentos.show');
+Route::get('depoimentos', [Homecontroller::class, 'depoimentoShow'])->name('home.depoimentos.show');
 Route::get('termos', [HomeController::class, 'termos'])->name('home.termos');
 Route::get('contato', [HomeController::class, 'contateNos'])->name('home.contato');
-
+Route::post('contato', [HomeController::class, 'sendEmail'])->name('home.email');
 
 
 

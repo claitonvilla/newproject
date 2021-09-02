@@ -7,10 +7,10 @@
         style="background-image: url('{{ asset('img/heading-6-1920x500.jpg') }}')">
         <div class="row">
             <h1>
-                $300 - $4000
+                ${{ $pacote->precos->min('price') }},00 - ${{ $pacote->precos->max('price') }},00
             </h1>
             <p>
-                LOREM IPSUM DOLOR SIT AMET
+                {{ $pacote->nome }}
             </p>
         </div>
     </section>
@@ -18,59 +18,36 @@
         <div class="container conteudos">
             <div class="row imagens">
                 <div class="col-sm-6 itens">
-                    <div class="img" style="background-image: url('{{ asset('img/product-details-1-740x540.jpg') }}')">
+                    <div class="img" style="background-image: url('{{ route('home.imagem', [$pacote->imagens[0]->imagem->id]) }}')">
                     </div><br>
                     <div class="row subimagens">
-                        <div class="col-sm-4">
-                            <div class="imgBox" style="background-image: url('{{ asset('img/product-1-370x270.jpg') }}')">
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="imgBox"
-                                style="background-image: url('{{ asset('img/product-details-1-740x540.jpg') }}')"></div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="imgBox"
-                                style="background-image: url('{{ asset('img/product-details-1-740x540.jpg') }}')"></div>
-                        </div>
+
+                        @foreach ($pacote->imagens as $imagem)
+
+                            <div class="col-sm-4">
+                                <div class="imgBox" style="background-image: url('{{ route('home.imagem', [$imagem->imagem->id]) }}')">
+                                </div>
+                            </div>  
+                                                      
+                        @endforeach                        
                     </div><br>
                 </div>
                 <div class="col-sm-6 end">
                     <div class="row title">
                         <div class="col-sm-12 infosPack">
-                            <div class="icon"><i class="fa fa-calendar"></i>Spring</div>
-                            <div class="icon"><i class="fa fa-cube"></i>Nights</div>
-                            <div class="icon"><i class="fa fa-plane"></i>Fligh included</div>
+                            <div class="icon"><i class="fa fa-calendar"></i> {{ Helper::getEstacao($pacote->precos[0]->from) }} </div>
+                            <div class="icon"><i class="fa fa-cube"></i> {{ $pacote->noites }} Nights</div>
+                            @if ($pacote->pass_aerea == 1)
+                            <div class="icon"><i class="fa fa-plane"></i> Fligh included</div>
+                            @endif
                         </div>
                     </div><br>
                     <div class="row endereco">
                         <div class="col-sm-12 infosEnd">
-                            <p><i class="fa fa-map-marker"></i> Regeneration Road, SE16 2NX, London</p><br>
+                            <p><i class="fa fa-map-marker"></i> {{ $pacote->endereço }}</p><br>
                         </div>
                         <div class="row text">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, delectus totam non est
-                                excepturi
-                                expedita, illum vitae vel dolore exercitationem nobis quasi dicta illo id quas. Error
-                                commodi,
-                                modi minus.
-
-                                Perferendis, quidem, facilis. Aspernatur alias numquam saepe deleniti dolorem quos
-                                repudiandae
-                                eaque ad eligendi quam, ratione, error minima culpa suscipit nostrum magni omnis est.
-                                Suscipit
-                                dolor sint aut maiores eius, id nemo, optio, quos tempora cum est quas. At recusandae
-                                obcaecati
-                                consequatur ipsa dignissimos, eius commodi qui quae exercitationem fugiat, voluptatem,
-                                nesciunt!
-
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem voluptatem vero culpa
-                                rerum
-                                similique labore, nisi minus voluptatum numquam fugiat.
-
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat fugit sint reiciendis quas
-                                temporibus quam maxime nulla vitae consectetur perferendis, fugiat assumenda ex dicta
-                                molestias
-                                soluta est quo totam cum?</p>
+                            <p> {{ $pacote->descricao }}</p>
                         </div>
                     </div>
                 </div>
@@ -92,13 +69,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row"></th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
+                        @foreach ($pacote->precos as $preco)
+
+                            <tr>
+                                <th scope="row">{{ $preco->id }}</th>
+                                <td>{{ $preco->from->format('d/m/Y') }}</td>
+                                <td>{{ $preco->to->format('d/m/Y') }}</td>
+                                <td> ${{ $preco->price }},00 </td>
+                            </tr>
+                            
+                        @endforeach
+                        {{-- <tr>
                             <th scope="row"></th>
                             <td>Jacob</td>
                             <td>Thornton</td>
@@ -115,51 +96,36 @@
                             <td>Larry</td>
                             <td>the Bird</td>
                             <td>@twitter</td>
-                        </tr>
+                        </tr> --}}
                     </tbody>
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"> ${{ $pacote->precos->sum('price') }},00</th>
+                        </tr>
+                    </thead>
                 </table>
             </div>
             <div class="row info">
-                <h1>Info</h1>
+                <div class="col">
+                    <h1>Info</h1>
+                </div>
             </div>
             <div class="row tableinfo">
                 <table class="table">
                     <tbody>
+
+                        @foreach ($pacote->infos as $info)
+                            
                         <tr>
-                            <th scope="row" width="15%">Chek in</th>
-                            <td>Donec dapibus semper sem, ac ultrices sem sagittis ut. Donec sit amet erat elit, sed
-                                pellentesque odio. In enim ligula, euismod a adipiscing in, laoreet quis turpis. Ut accumsan
-                                dignissim rutrum.</td>
+                            <th scope="row" width="15%">{{ $info->nome }}</th>
+                            <td>{{ $info->descricao }}</td>
                         </tr>
-                        <tr>
-                            <th scope="row">Check out</th>
-                            <td>Donec dapibus semper sem, ac ultrices sem sagittis ut. Donec sit amet erat elit, sed
-                                pellentesque odio. In enim ligula, euismod a adipiscing in, laoreet quis turpis. Ut accumsan
-                                dignissim rutrum.</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Pets</th>
-                            <td>Not allowed</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Policies</th>
-                            <td>Donec dapibus semper sem, ac ultrices sem sagittis ut. Donec sit amet erat elit, sed
-                                pellentesque odio. In enim ligula, euismod a adipiscing in, laoreet quis turpis. Ut accumsan
-                                dignissim rutrum.
-                                Donec dapibus semper sem, ac ultrices sem sagittis ut. Donec sit amet erat elit, sed
-                                pellentesque odio. In enim ligula, euismod a adipiscing in, laoreet quis turpis. Ut accumsan
-                                dignissim rutrum.</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Fees</th>
-                            <td>
-                                Donec dapibus semper sem, ac ultrices sem sagittis ut. Donec sit amet erat elit, sed
-                                pellentesque odio. In enim ligula, euismod a adipiscing in, laoreet quis turpis. Ut accumsan
-                                dignissim rutrum.
-                                Donec dapibus semper sem, ac ultrices sem sagittis ut. Donec sit amet erat elit, sed
-                                pellentesque odio. In enim ligula, euismod a adipiscing in, laoreet quis turpis. Ut accumsan
-                                dignissim rutrum</td>
-                        </tr>
+                        
+                        @endforeach
+                       
                     </tbody>
                 </table>
             </div>
@@ -167,9 +133,7 @@
                 <div class="col-sm-9 maps">
                     <div class="title">Map</div>
                     <div class="gmaps">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14693.352331322254!2d-46.55390723022461!3d-22.974592149999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1630074525969!5m2!1spt-BR!2sbr"
-                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        {!! $pacote->mapa !!}
                     </div>
                 </div>
                 <div class="col-sm-3 contact">
@@ -177,13 +141,13 @@
                         <p>Contact details</p>
                     </div>
                     <div class="dadosCont">
-                        <p><span>Nome</span><br><strong>Jose</strong></p>
-                        <p><span>Telefone</span><br><strong><a href="" style="text-decoration:none">123-456-789</a></strong>
+                        <p><span>Nome</span><br><strong>{{ $pacote->contato_nome }}</strong></p>
+                        <p><span>Telefone</span><br><strong><a href="" style="text-decoration:none">{{ $pacote->contato_tel }}</a></strong>
                         </p>
-                        <p><span>Celular</span><br><strong><a href="" style="text-decoration:none">456789123</a></strong>
+                        <p><span>Celular</span><br><strong><a href="" style="text-decoration:none">{{ $pacote->contato_cel }}</a></strong>
                         </p>
                         <p><span>Email</span><br><strong><a href=""
-                                    style="text-decoration:none">John@carsales.com</a></strong></p>
+                                    style="text-decoration:none">{{ $pacote->email }}</a></strong></p>
                         </a>
                     </div>
                     <div class="button">

@@ -26,26 +26,26 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{ route('home') }}">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">Pacotes</a>
+                          <a class="nav-link" href="{{ route('home.pacotes') }}">Pacotes</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">Blog</a>
+                          <a class="nav-link" href="{{ route('home.blogs') }}">Blog</a>
                         </li>
                         <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Mais
                           </a>
                           <div class="dropdown-menu submenu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Sobre Nós</a>
-                            <a class="dropdown-item" href="#">Depoimentos</a>                            
-                            <a class="dropdown-item" href="#">Termos</a>
+                            <a class="dropdown-item" href="{{ route('home.more.about') }}">Sobre Nós</a>
+                            <a class="dropdown-item" href="{{ route('home.depoimentos.show') }}">Depoimentos</a>                            
+                            <a class="dropdown-item" href="{{ route('home.termos') }}">Termos</a>
                           </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contate-nos</a>
+                            <a class="nav-link" href="{{ route('home.contato') }}" tabindex="-1" aria-disabled="true">Contate-nos</a>
                         </li>
                     </ul>
                 </div>

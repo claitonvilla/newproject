@@ -19,90 +19,33 @@
             <div class="row all">
                 <div class="col-sm-8 imgBlogs">
                     <div class="row">
-                        <div class="col-sm-6 cardOne">
-                            <div class="card" style="">
-                                <a href=""><img src="img/blog-1-370x270.jpg" class="card-img-top"
-                                        style="text-decoration:none" alt="..."></a>
-                                <div class="card-body">
-                                    <a href="" style="text-decoration:none">
-                                        <h4 class="card-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit hic
-                                        </h4>
-                                    </a>
-                                    <p class="card-text">John Doe | 12/06/2020 10:30 | 114</p>
+
+
+                        @foreach ($blogues as $blog)
+
+
+
+                            <div class="col-sm-6 cardOne">
+                                <div class="card" style="">
+                                    <a href="{{ route('home.blogs.show', [$blog->id]) }}"><img src="img/blog-1-370x270.jpg" class="card-img-top"
+                                            style="text-decoration:none" alt="..."></a>
+                                    <div class="card-body">
+                                        <a href="{{ route('home.blogs.show', [$blog->id]) }}" style="text-decoration:none">
+                                            <h4 class="card-title">{{ $blog->nome }}
+                                            </h4>
+                                        </a>
+                                        <p class="card-text">{{ $blog->autor }} |
+                                            {{ $blog->created_at->format('d-m-Y') }} | {{ $blog->views }}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6 cardOne">
-                            <div class="card" style="">
-                                <a href=""><img src="img/blog-1-370x270.jpg" class="card-img-top"
-                                        style="text-decoration:none" alt="..."></a>
-                                <div class="card-body">
-                                    <a href="" style="text-decoration:none">
-                                        <h4 class="card-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit hic
-                                        </h4>
-                                    </a>
-                                    <p class="card-text">John Doe | 12/06/2020 10:30 | 114</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 cardOne">
-                            <div class="card" style="">
-                                <a href=""><img src="img/blog-1-370x270.jpg" class="card-img-top"
-                                        style="text-decoration:none" alt="..."></a>
-                                <div class="card-body">
-                                    <a href="" style="text-decoration:none">
-                                        <h4 class="card-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit hic
-                                        </h4>
-                                    </a>
-                                    <p class="card-text">John Doe | 12/06/2020 10:30 | 114</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 cardOne">
-                            <div class="card" style="">
-                                <a href=""><img src="img/blog-1-370x270.jpg" class="card-img-top"
-                                        style="text-decoration:none" alt="..."></a>
-                                <div class="card-body">
-                                    <a href="" style="text-decoration:none">
-                                        <h4 class="card-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit hic
-                                        </h4>
-                                    </a>
-                                    <p class="card-text">John Doe | 12/06/2020 10:30 | 114</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 cardOne">
-                            <div class="card" style="">
-                                <a href=""><img src="img/blog-1-370x270.jpg" class="card-img-top"
-                                        style="text-decoration:none" alt="..."></a>
-                                <div class="card-body">
-                                    <a href="" style="text-decoration:none">
-                                        <h4 class="card-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit hic
-                                        </h4>
-                                    </a>
-                                    <p class="card-text">John Doe | 12/06/2020 10:30 | 114</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 cardOne">
-                            <div class="card" style="">
-                                <a href=""><img src="img/blog-1-370x270.jpg" class="card-img-top"
-                                        style="text-decoration:none" alt="..."></a>
-                                <div class="card-body">
-                                    <a href="" style="text-decoration:none">
-                                        <h4 class="card-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit hic
-                                        </h4>
-                                    </a>
-                                    <p class="card-text">John Doe | 12/06/2020 10:30 | 114</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
+
+
+
+                        @endforeach
+
+                    </div>                   
+                    <div class="row listagem">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -123,19 +66,27 @@
                             <h1 class="mb-3">Blog Search</h1>
                             <form class="form-inline mb-3">
                                 <div class="col-sm-8 pl-0">
-                                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                                </div>                                
+                                    <input class="form-control mr-sm-2" type="search" placeholder="Search"
+                                        aria-label="Search">
+                                </div>
                                 <div class="col-sm-4">
                                     <button class="btn btn-outline-success my-0 my-sm-0" type="submit">Go</button>
                                 </div>
                             </form>
-                            <h2>Lorem ipsum dolor sit amet</h2>
-                            <p><a href="" style="text-decoration: none">Lorem ipsum dolor sit amet, consectetur adipisicing.</a></p>
-                            <p><a href="" style="text-decoration: none">Et animi voluptatem, assumenda enim, consectetur quaerat!</a></p>    
-                            <p><a href="" style="text-decoration: none">Ducimus magni eveniet sit doloremque molestiae alias mollitia vitae.</a></p>   
+                            <h2>Os mais lidos</h2>
+
+
+                            @foreach ($maisVisualizados as $visualizado)
+                                
+                            
+                            <p><a href="{{ route('home.blogs.show', [$visualizado->id]) }}" style="text-decoration: none">{{ $visualizado->nome }}</a></p>
+                                
+                                
+                            @endforeach
+
 
                         </div>
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </div>
